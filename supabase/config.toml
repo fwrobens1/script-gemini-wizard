@@ -1,0 +1,4 @@
+project_id = "onsqvzmdyihwhydkcmkh"
+
+[functions.roblox-gemini]
+verify_jwt = false
