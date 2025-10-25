@@ -14,7 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          role: string
+          session_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          role: string
+          session_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          role?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "studio_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      game_structure: {
+        Row: {
+          id: string
+          session_id: string
+          structure: Json
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          session_id: string
+          structure: Json
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          session_id?: string
+          structure?: Json
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "game_structure_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "studio_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      pending_actions: {
+        Row: {
+          action: Json
+          completed_at: string | null
+          created_at: string | null
+          error_message: string | null
+          id: string
+          session_id: string
+          status: string | null
+        }
+        Insert: {
+          action: Json
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          session_id: string
+          status?: string | null
+        }
+        Update: {
+          action?: Json
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: string
+          session_id?: string
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pending_actions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "studio_sessions"
+            referencedColumns: ["session_id"]
+          },
+        ]
+      }
+      studio_sessions: {
+        Row: {
+          created_at: string | null
+          id: string
+          last_heartbeat: string | null
+          session_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          last_heartbeat?: string | null
+          session_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          last_heartbeat?: string | null
+          session_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

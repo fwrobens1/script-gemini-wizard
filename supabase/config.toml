@@ -2,3 +2,15 @@ project_id = "onsqvzmdyihwhydkcmkh"
 
 [functions.roblox-gemini]
 verify_jwt = false
+
+[functions.chat]
+verify_jwt = false
+
+[functions.sync-structure]
+verify_jwt = false
+
+[functions.get-actions]
+verify_jwt = false
+
+[functions.complete-action]
+verify_jwt = false
